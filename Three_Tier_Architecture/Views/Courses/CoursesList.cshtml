@@ -1,0 +1,21 @@
+﻿@model ModelObjectLayer.CommonEntities.CourseModule;
+
+<div class="row">
+    <div class="col-lg-6">
+        <h3>Courses List</h3>
+    </div>
+
+    <div class="col-lg-6">
+        <a href="@Url.Action("AddCourse","Courses")" class="btn btn-primary">Add New Course</a>
+    </div>
+
+</div>
+
+@if (Model != null)
+{
+    @Html.Partial("~/Views/Shared/_CoursesListPartial.cshtml", Model)
+}
+else
+{
+    <p>No data available</p>
+}

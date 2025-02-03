@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div>
+    <h2>Add New Student</h2>
+</div>
+
+ 
+<div class="row">
+    <div class="col-lg-8">
+
+        <form id="myForm">
+            <div class="form-group">
+                <label for="FirstName">First Name</label>
+                <input type="text" class="form-control" id="FirstName" name="FirstName">  
+                <label id="ErrorFirstName"></label>
+            </div>
+           
+            <div class="form-group">
+                <label for="LastName">Last Name</label>
+                <input type="text" class="form-control" id="LastName" name="LastName">
+                <label id="ErrorLastName"></label>
+            </div>
+           
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="Email" name="Email">
+                <label id="ErrorEmail"></label>
+            </div>
+
+            <button type="submit" id="btnSubmit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </div>
+</div>
+
+<div id="responseMessage"></div>

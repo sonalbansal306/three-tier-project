@@ -1,0 +1,43 @@
+﻿
+ @model ModelObjectLayer.CommonEntities.StudentModule;
+ 
+    @* _StudentsListPartial.cshtml *@
+    <div>
+    <h2>Partial View Content</h2>
+        <p>This is a reusable component.</p>
+    </div>
+
+
+<div class="row">
+    <div class="col-lg-8">
+
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th scope="col">Student Id</th> 
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    if (Model != null && Model.studentsList != null && Model.studentsList.Count() > 0)
+                    {
+                        foreach (var item in Model.studentsList)
+                        {
+                            <tr>
+                                <th scope="row">@item.StudentId</th>
+                                <td>@item.FirstName</td>
+                                <td>@item.LastName</td>
+                                <td>@item.Email</td>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

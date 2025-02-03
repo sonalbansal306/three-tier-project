@@ -1,0 +1,60 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="bin\Debug\net8.0\appsettings.Development.json" />
+    <Content Include="bin\Debug\net8.0\appsettings.json" />
+    <Content Include="bin\Debug\net8.0\Three_Tier_Architecture.deps.json" />
+    <Content Include="bin\Debug\net8.0\Three_Tier_Architecture.runtimeconfig.json" />
+    <Content Include="bin\Debug\net8.0\Three_Tier_Architecture.staticwebassets.runtime.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\net8.0\BusinessLogicLayer.dll" />
+    <None Include="bin\Debug\net8.0\BusinessLogicLayer.pdb" />
+    <None Include="bin\Debug\net8.0\Dapper.dll" />
+    <None Include="bin\Debug\net8.0\DataAccessLayer.dll" />
+    <None Include="bin\Debug\net8.0\DataAccessLayer.pdb" />
+    <None Include="bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll" />
+    <None Include="bin\Debug\net8.0\ModelObjectLayer.dll" />
+    <None Include="bin\Debug\net8.0\ModelObjectLayer.pdb" />
+    <None Include="bin\Debug\net8.0\runtimes\unix\lib\net8.0\System.Data.SqlClient.dll" />
+    <None Include="bin\Debug\net8.0\runtimes\win-arm64\native\sni.dll" />
+    <None Include="bin\Debug\net8.0\runtimes\win-x64\native\sni.dll" />
+    <None Include="bin\Debug\net8.0\runtimes\win-x86\native\sni.dll" />
+    <None Include="bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Data.SqlClient.dll" />
+    <None Include="bin\Debug\net8.0\System.Data.SqlClient.dll" />
+    <None Include="bin\Debug\net8.0\Three_Tier_Architecture.dll" />
+    <None Include="bin\Debug\net8.0\Three_Tier_Architecture.exe" />
+    <None Include="bin\Debug\net8.0\Three_Tier_Architecture.pdb" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\User\Data\" />
+    <Folder Include="Areas\User\Models\" />
+    <Folder Include="bin\Debug\net8.0\ref\" />
+    <Folder Include="Uploads\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
+  </ItemGroup>
+
+</Project>

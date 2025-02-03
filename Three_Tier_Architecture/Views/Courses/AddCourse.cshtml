@@ -1,0 +1,147 @@
+﻿@model ModelObjectLayer.CommonEntities.CourseModule;
+<div>
+    <h2>Add New Courses</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        @{
+            if(TempData["ErrorTemp"] != null)
+            {
+                        <div class="alert alert-danger" role="alert">
+                            @TempData["ErrorTemp"]
+                        </div>
+            }
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+
+        <form asp-controller="Courses" asp-action="AddCoursePost">
+            <div class="form-group">
+                <label for="FirstName">First Name</label>
+                <input type="text" class="form-control" id="FirstName" name="FirstName" placeholder="Enter FirstName">
+            </div>
+
+            <div class="form-group">
+                <label for="LastName">Last Name</label>
+                <input type="text" class="form-control" id="LastName" name="LastName" placeholder="Enter LastName">               
+            </div>
+
+            <div class="form-group">
+                <label for="Email">Email Id</label>
+                <input type="email" class="form-control" id="Email" name="Email" placeholder="Enter EmailId">                
+            </div>
+
+            <div class="form-group">
+                <label for="Address">Address</label>
+                <input type="text" class="form-control" id="Address" name="Address" placeholder="Enter Address">
+            </div>
+
+
+            <div>
+                <form id="ddlswticherForm" method="get">
+                    @Html.AntiForgeryToken()
+                    <div class="title-table">Courses List <i class="fa-solid fa-table mx-1"></i></div>
+                    <select id="ddlswticher" name="selectedValue">
+                        <option value="0">-Select-</option>
+                        <option value="1" selected>BCA</option>
+                        <option value="2">MCA</option>
+                        <option value="3">BBA</option>
+                        <option value="4">MBA</option>
+                        <option value="5">HUMAN RESOURSE</option>
+                        <option value="6">FINANCE</option>
+                        <option value="7">MARKETING</option>
+                        <option value="8">ACCOUNTS</option>
+                    </select>
+                </form>
+
+                <input type="hidden" id="defaultSelection" value="3" />
+                <div id="courseListContainer" class="table-grid mt-3">
+                    <div id="loadingSpinner" style="display:none;">
+                        <div class="spinner-container">
+                            <div class="spinner"></div>
+                            <div>Loading data...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+            <div class="form-group">
+                <label for="UploadDocument">Upload Document</label>
+                <input type="file" class="form-control" id="UploadDocument" name="UploadDocument" placeholder="Upload Document.">
+            </div> 
+           
+
+            <button type="submit" id="btnSubmit" class="btn btn-primary">Submit</button>
+        </form>
+     
+    </div>
+</div>
+
+
+
+
+<!-- JavaScript Section -->
+
+@*-----------Dropdown Select Code----------------*@
+
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var antiForgeryToken = $('input[name="__RequestVerificationToken"]').val();
+            var selectedValue = $('#defaultSelection').val();
+
+            // Trigger the default selection and load the data
+            $('#ddlswticher').val(selectedValue).change();
+            loadDefaultData(selectedValue, antiForgeryToken);
+
+            function loadDefaultData(selectedValue, antiForgeryToken) {
+                $('#loadingSpinner').show();
+                $.ajax({
+                    url: '@Url.Action("AddCourse", "Courses")',
+                    type: 'GET',
+                    data: { selectedValue: selectedValue },
+                    success: function (data) {
+                        $('#courseListContainer').html(data);
+                        initializeDataTable();
+                    },
+                    error: function () {
+                        handleAjaxError('Failed to load data.');
+                    }
+                });
+            }
+
+            function bindDropdown(selectedValue, antiForgeryToken) {
+                $('#loadingSpinner').show();
+                $.ajax({
+                    url: '@Url.Action("AddCourse", "Courses")',
+                    type: 'GET',
+                    data: {
+                        selectedValue: selectedValue,
+                        __RequestVerificationToken: antiForgeryToken
+                    },
+                    success: function (data) {
+                        $('#courseListContainer').html(data);
+                        initializeDataTable();
+                    },
+                    error: function () {
+                        handleAjaxError('Failed to retrieve data.');
+                    }
+                });
+            }
+
+
+
+            $('#ddlswticher').change(function () {
+                selectedValue = $(this).val();
+                bindDropdown(selectedValue, antiForgeryToken);
+            });
+        }
+                        
+                       
+</script>	
+}

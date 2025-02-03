@@ -1,0 +1,75 @@
+﻿ @model ModelObjectLayer.CommonEntities.CourseModule;
+
+@* _CoursesListPartial.cshtml *@
+<div>
+    <h2>Partial View Content of Course List </h2>
+    <p>This is a reusable component.</p>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-8">
+
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th scope="col">Courses Id</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">EmailId</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Course Type</th>
+                    <th scope="col">Upload Document</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    if (Model != null && Model.coursesList != null && Model.coursesList.Count() > 0)
+                    {
+                        foreach (var item in Model.coursesList)
+                        {
+                           <tr>
+                                <th scope="row">@item.CoursesId</th>
+                                <td>@item.FirstName</td>
+                                <td>@item.LastName</td>
+                                <td>@item.EmailId</td>
+                                <td>@item.Address</td>
+                                <td>@item.CourseType</td>
+                                @* <td>@item.UploadDocument</td> *@
+
+                                <td style="width: 110px;">
+                                   <form id="upload-form-@item.CoursesId" enctype="multipart/form-data">
+                                      @Html.Hidden("CoursesId", item.CoursesId)
+
+                                         <div class="file-upload">
+                                             <label for="file-upload-@item.CoursesId" class="file-label " style="cursor:pointer;">
+                                                   <span>
+                                                       <i class="fas fa-file-arrow-up" title="Choose File" style="font-size: 25px; color: #99c23c; cursor:pointer;"></i>
+                                                   </span>
+                                             </label>
+                                                    <input id="file-upload-@item.CoursesId" type="file" name="file" class="file-upload-input" data-claim-id="@item.CoursesId" onchange="displayFileName(this)" />
+                                                   <span class="file-display" style="white-space:nowrap;">No file chosen</span>
+                                         </div> <br />
+                                      @*<span>
+                                            <a id="openPopUpModalButtonId" data-bs-toggle="modal" data-claim-id="@item.CoursesId">
+                                                <i class="fa-solid fa-eye" title="View File" onclick="openModal(@item.CoursesId)" style="font-size: 20px; color: #007bff; cursor:pointer;"></i>
+                                            </a>
+                                        </span>  *@
+
+
+                                <td style="width:50px;">
+                                    <textarea style="padding:2px 5px;" name="claimNotes" id="claimNotes-@item.CoursesId"></textarea>
+                                </td>
+                                    </form>
+                                </td>
+
+                           </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
